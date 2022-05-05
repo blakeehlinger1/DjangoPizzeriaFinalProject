@@ -17,3 +17,12 @@ class Topping(models.Model):
 
     def __str__(self):
         return f"{self.topping_name[:100]}"
+
+class Comment(models.Model):
+    pizza = models.ForeignKey(Pizza,on_delete=models.CASCADE)
+    comment_name = models.TextField()
+    
+    def __str__(self):
+        return f"{self.comment_name[:100]}"
+
+    

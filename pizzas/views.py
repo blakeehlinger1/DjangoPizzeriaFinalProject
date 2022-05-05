@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from .forms import  CommentForm
 from .models import Pizza
 # Create your views here.
 #WHAT DO I DO ABOUT THE DATE ADDED?
@@ -7,19 +9,33 @@ def index(request):
 
 def pizzas(request):
     pizzas = Pizza.objects.all()
-
+#changed
     context = {'pizzas':pizzas}
 
     return render(request,'pizzas/pizzas.html', context)
 
 def pizza(request, pizza_id):
     pizza = Pizza.objects.get(id=pizza_id)
-    toppings = pizza.topping_set.order_by('-date_added')
+    toppings = pizza.topping_set.all()
 
     context = {'pizza':'pizza','toppings':toppings}
 
     return render(request, 'pizzas/pizza.html',context)
 
 
+def new_comment(request, pizza_id):
+    pizza = Pizza.objects.get(id=pizza_id)
 
+    if request.method != 'POST':
+        form = CommentForm()
+    else:
+        form = CommentForm(data=request.POST)
 
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.pizza = pizza
+            new_comment.save()
+            return redirect('pizzas:pizza',pizza_id=pizza_id)
+    
+    context = {'form':form, 'pizza':pizza}
+    return render(request, 'pizzas/new_comment.html', context)
