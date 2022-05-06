@@ -1,20 +1,25 @@
 {% extends "pizzas/base.html" %}
+{% block}
 
-
+{% block page_header %}
+<h1>Pizza Menu</h1>
+{% endblock page_header %}
 {% block content %}
-
-<p> Pizzas </p>
-
 <ul>
     {% for p in pizzas %}
-
     <li>
-        <a href="{% url 'pizzas:pizza' p.id %}">{{ p }} </a>
+        <h3>
+            <a href="{% url 'pizzas:pizza' p.id %}">{{ p }} </a>
+        </h3>
     </li>
     {% empty %}
     <li>No Pizzas have been added yet.</li>
     {% endfor %}
 </ul>
 
-
+<style>
+    body {
+        background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/06/Light-Blue-HD-Backgrounds-Free-Download.jpg')
+    }
+</style>
 {% endblock content %}

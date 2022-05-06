@@ -21,7 +21,7 @@ for t in toppings:
 comments = p.comments_set.all()
 
 for c in comments:
-    print(c)
+    print(c.comment_name)
 
 #print(p.text)
 #print(p.date_added)

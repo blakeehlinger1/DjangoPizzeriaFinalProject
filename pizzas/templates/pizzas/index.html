@@ -1,8 +1,19 @@
 {% extends "pizzas/base.html" %}
+{% load static %}
+{% block page_header %}
+<div class="jumbotron">
+    <h1 class"display-3>Blake's Pizza</h1>
+    <p class="lead">Taste the greatest authentic pizza's in all of Texas.</p>
 
 
-{% block content %}
 
-<p>Blake's Pizza is made fresh daily with authentic flavor</p>
 
-{% endblock content %}
+
+</div>
+
+<style>
+    body {
+        background-image: url('https://prineta.com/wp-content/uploads/2015/05/Houston-ATM-Company-Texas-ATM-Services-ATM-Machine-placement-management-install-and-repair-in-Houston-The-Woodlands-Sugarland-Area.jpg')
+    }
+</style>
+{% endblock page_header %}
